@@ -17,7 +17,8 @@ app.get('/', (req, res, err) => {
         </head>
         <body>
           <div>
-            <h3>TEST HEADING</h3>
+            <input id="input-el" type="text">
+            <button id="input-btn">SAVE INPUT</button>
           </div>
         </body>
       </html>`;
