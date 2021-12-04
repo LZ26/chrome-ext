@@ -1,29 +1,19 @@
 const express = require('express');
+const morgan = require('morgan');
+const addLead = require('./views/addLead');
+
 const app = express();
 
-const morgan = require('morgan');
-
+//middleware for logging
 app.use(morgan('dev'));
 
-app.use(express.static('public'));
+//middleware for handling public folder - i.e. project assets, images, etc.
+app.use(express.static(__dirname + '/public'));
 
-app.get('/', (req, res, err) => {
+//route to retrieve form
+app.get('/', async (req, res, err) => {
   try {
-    const html = `<!DOCTYPE html>
-      <html>
-        <head>
-          <title>Chrome Extension</title>
-          <link rel="stylesheet" href="style.css" />
-        </head>
-        <body>
-          <div>
-            <input id="input-el" type="text">
-            <button id="input-btn">SAVE INPUT</button>
-          </div>
-        </body>
-      </html>`;
-
-    res.send(html);
+    res.send(addLead());
   } catch (err) {
     next(err);
   }
